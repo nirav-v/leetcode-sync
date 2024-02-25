@@ -14,20 +14,14 @@
 
 function invertTree(root: TreeNode | null): TreeNode | null {
 
-    function swapNodes(currentNode: TreeNode) {
+        if (root === null) return root;
 
-        if (!currentNode) return
+        const temp = root.left;
+        root.left = root.right;
+        root.right = temp; 
+ 
+        invertTree(root.left);
+        invertTree(root.right);
 
-        console.log(currentNode)
-        const temp = currentNode.left;
-        currentNode.left = currentNode.right;
-        currentNode.right = temp;
-        swapNodes(currentNode.left);
-        swapNodes(currentNode.right);
-
-    }
-
-    swapNodes(root)
-
-    return root;
+        return root
 };
